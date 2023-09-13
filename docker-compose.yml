@@ -1,0 +1,29 @@
+version : 4.23.0
+
+services:
+  main:
+    image : dornica-test-project
+    build : .
+    port :
+      - 8000:8000
+    depends_on:
+      - mysql
+      - redis
+
+
+mysql:
+  image: mysql:latest
+  container_name: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD : "root"
+    MYSQL_DATABASE : "dornica_test_db"
+    MYSQL_PASSWORD : "manamirhastam"
+  ports:
+    - 3306:3306
+
+
+redis:
+  image: redis:latest
+  container_name : redis
+  ports:
+    -6379:6379
